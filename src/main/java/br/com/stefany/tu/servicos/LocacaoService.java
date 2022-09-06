@@ -4,6 +4,8 @@ import br.com.stefany.tu.entidades.Filme;
 import br.com.stefany.tu.entidades.Locacao;
 import br.com.stefany.tu.entidades.Usuario;
 import br.com.stefany.tu.utils.DataUtils;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
@@ -29,7 +31,8 @@ public class LocacaoService {
         return locacao;
     }
 
-    public static void main(String[] args) {
+    @Test
+    public void teste() {
 
         //cenario
         LocacaoService service = new LocacaoService();
@@ -40,9 +43,9 @@ public class LocacaoService {
         Locacao locacao = service.alugarFilme(usuario, filme);
 
         //verificacao
-        System.out.println(locacao.getValor() == 5);
-        System.out.println(DataUtils.isMesmaData(locacao.getDataLocacao(), new Date()));
-        System.out.println(DataUtils.isMesmaData(locacao.getDataRetorno(),
+        Assertions.assertTrue(locacao.getValor() == 5.0);
+        Assertions.assertTrue(DataUtils.isMesmaData(locacao.getDataLocacao(), new Date()));
+        Assertions.assertTrue(DataUtils.isMesmaData(locacao.getDataRetorno(),
                 DataUtils.obterDataComDiferencaDias(1)));
     }
 }
