@@ -35,7 +35,7 @@ public class LocacaoServiceTest {
 
 
     @Test
-    public void testeLocacao() throws Exception {
+    public void testLocacao() throws Exception {
 
         //cenario
         Usuario usuario = new Usuario("Usuario 1");
@@ -78,7 +78,7 @@ public class LocacaoServiceTest {
     }
 
     @Test
-    public void testeLocacao_FilmeVzio() throws FilmeSemEstoqueException, LocadoraException {
+    public void testLocacao_FilmeVzio() throws FilmeSemEstoqueException, LocadoraException {
 
         //cenario
         Usuario usuario = new Usuario("Usuário 1");
