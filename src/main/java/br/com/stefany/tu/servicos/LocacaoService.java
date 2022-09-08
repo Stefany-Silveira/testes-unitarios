@@ -3,6 +3,8 @@ package br.com.stefany.tu.servicos;
 import br.com.stefany.tu.entidades.Filme;
 import br.com.stefany.tu.entidades.Locacao;
 import br.com.stefany.tu.entidades.Usuario;
+import br.com.stefany.tu.exception.FilmeSemEstoqueException;
+import br.com.stefany.tu.exception.LocadoraException;
 import br.com.stefany.tu.utils.DataUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,9 +15,17 @@ import static br.com.stefany.tu.utils.DataUtils.adicionarDias;
 
 public class LocacaoService {
 
-    public Locacao alugarFilme(Usuario usuario, Filme filme) throws Exception {
+    public Locacao alugarFilme(Usuario usuario, Filme filme) throws FilmeSemEstoqueException, LocadoraException {
+        if (usuario == null) {
+            throw new LocadoraException("Usuário vazio");
+        }
+
+        if (filme == null) {
+            throw new LocadoraException("Filme vazio");
+        }
+
         if (filme.getEstoque() == 0) {
-            throw new Exception("Filme sem estoque");
+            throw new FilmeSemEstoqueException();
         }
 
         Locacao locacao = new Locacao();
