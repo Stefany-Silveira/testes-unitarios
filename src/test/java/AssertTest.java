@@ -1,5 +1,3 @@
-package br.com.stefany.tu.servicos;
-
 import br.com.stefany.tu.entidades.Usuario;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
