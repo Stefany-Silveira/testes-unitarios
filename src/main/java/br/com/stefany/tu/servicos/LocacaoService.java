@@ -5,34 +5,38 @@ import br.com.stefany.tu.entidades.Locacao;
 import br.com.stefany.tu.entidades.Usuario;
 import br.com.stefany.tu.exception.FilmeSemEstoqueException;
 import br.com.stefany.tu.exception.LocadoraException;
-import br.com.stefany.tu.utils.DataUtils;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import java.util.Date;
+import java.util.List;
 
 import static br.com.stefany.tu.utils.DataUtils.adicionarDias;
 
 public class LocacaoService {
 
-    public Locacao alugarFilme(Usuario usuario, Filme filme) throws FilmeSemEstoqueException, LocadoraException {
+    public Locacao alugarFilme(Usuario usuario, List<Filme> filmes) throws FilmeSemEstoqueException, LocadoraException {
         if (usuario == null) {
             throw new LocadoraException("Usuário vazio");
         }
 
-        if (filme == null) {
+        if (filmes == null || filmes.isEmpty()) {
             throw new LocadoraException("Filme vazio");
         }
 
-        if (filme.getEstoque() == 0) {
-            throw new FilmeSemEstoqueException();
+        for (Filme filme: filmes) {
+            if (filme.getEstoque() == 0) {
+                throw new FilmeSemEstoqueException();
+            }
         }
 
         Locacao locacao = new Locacao();
-        locacao.setFilme(filme);
+        locacao.setFilmes(filmes);
         locacao.setUsuario(usuario);
         locacao.setDataLocacao(new Date());
-        locacao.setValor(filme.getPrecoLocacao());
+        Double valorTotal = 0d;
+        for (Filme filme: filmes) {
+            valorTotal += filme.getPrecoLocacao();
+        }
+        locacao.setValor(valorTotal);
 
         //Entrega no dia seguinte
         Date dataEntrega = new Date();
@@ -43,23 +47,5 @@ public class LocacaoService {
         //TODO adicionar método para salvar
 
         return locacao;
-    }
-
-    @Test
-    public void teste() throws Exception {
-
-        //cenario
-        LocacaoService service = new LocacaoService();
-        Usuario usuario = new Usuario("Usuario 1");
-        Filme filme = new Filme("Filme 1", 2, 5.0);
-
-        //ação
-        Locacao locacao = service.alugarFilme(usuario, filme);
-
-        //verificacao
-        Assertions.assertTrue(locacao.getValor() == 5.0);
-        Assertions.assertTrue(DataUtils.isMesmaData(locacao.getDataLocacao(), new Date()));
-        Assertions.assertTrue(DataUtils.isMesmaData(locacao.getDataRetorno(),
-                DataUtils.obterDataComDiferencaDias(1)));
     }
 }
