@@ -3,7 +3,6 @@ package br.com.stefany.tu.servicos;
 import br.com.stefany.tu.exception.NaoPodeDividirPorZeroException;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class CalculadoraTest {
