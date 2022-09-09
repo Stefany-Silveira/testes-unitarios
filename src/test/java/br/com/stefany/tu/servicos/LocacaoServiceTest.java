@@ -129,7 +129,7 @@ public class LocacaoServiceTest {
     }
 
     @Test
-    public void devePagar75PctNoFilme5 () throws FilmeSemEstoqueException, LocadoraException {
+    public void devePagar25PctNoFilme5 () throws FilmeSemEstoqueException, LocadoraException {
 
         //cenario
         Usuario usuario = new Usuario("Usuário 1");
