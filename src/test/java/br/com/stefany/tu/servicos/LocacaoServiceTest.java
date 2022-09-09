@@ -1,7 +1,7 @@
 package br.com.stefany.tu.servicos;
 
-import static br.com.stefany.tu.utils.DataUtils.isMesmaData;
-import static br.com.stefany.tu.utils.DataUtils.obterDataComDiferencaDias;
+import static br.com.stefany.tu.matchers.MatchersProprio.ehHoje;
+import static br.com.stefany.tu.matchers.MatchersProprio.ehHojeComDiferencaDias;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -50,8 +50,8 @@ public class LocacaoServiceTest {
 
         //verificacao
         error.checkThat(locacao.getValor(), is(equalTo(5.0)));
-        error.checkThat(isMesmaData(locacao.getDataLocacao(), new Date()), is(true));
-        error.checkThat(isMesmaData(locacao.getDataRetorno(), obterDataComDiferencaDias(1)), is(true));
+        error.checkThat(locacao.getDataLocacao(), ehHoje());
+        error.checkThat(locacao.getDataRetorno(), ehHojeComDiferencaDias(1));
     }
 
     @Test(expected = FilmeSemEstoqueException.class)
