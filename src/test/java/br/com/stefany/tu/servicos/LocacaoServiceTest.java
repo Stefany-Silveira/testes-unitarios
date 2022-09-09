@@ -14,6 +14,7 @@ import java.util.List;
 import br.com.stefany.tu.exception.FilmeSemEstoqueException;
 import br.com.stefany.tu.exception.LocadoraException;
 import br.com.stefany.tu.utils.DataUtils;
+import buildermaster.BuilderMaster;
 import org.junit.*;
 import org.junit.rules.ErrorCollector;
 import org.junit.rules.ExpectedException;
@@ -103,5 +104,9 @@ public class LocacaoServiceTest {
 
         //verificacao
         assertThat(retorno.getDataRetorno(), caiNumaSegunda());
+    }
+
+    public static void main(String[] args) {
+        new BuilderMaster().gerarCodigoClasse(Locacao.class);
     }
 }
