@@ -1,5 +1,6 @@
 package br.com.stefany.tu.servicos;
 
+import br.com.stefany.tu.dao.LocacaoDAO;
 import br.com.stefany.tu.entidades.Filme;
 import br.com.stefany.tu.entidades.Locacao;
 import br.com.stefany.tu.entidades.Usuario;
@@ -14,6 +15,8 @@ import java.util.List;
 import static br.com.stefany.tu.utils.DataUtils.adicionarDias;
 
 public class LocacaoService {
+
+    private LocacaoDAO dao;
 
     public Locacao alugarFilme(Usuario usuario, List<Filme> filmes) throws FilmeSemEstoqueException, LocadoraException {
         if(usuario == null) {
@@ -57,7 +60,7 @@ public class LocacaoService {
         locacao.setDataRetorno(dataEntrega);
 
         //Salvando a locacao...
-        //TODO adicionar método para salvar
+        dao.salvar(locacao);
 
         return locacao;
     }
