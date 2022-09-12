@@ -7,9 +7,7 @@ public class FilmeBuilder {
 
     private Filme filme;
 
-    private FilmeBuilder() {
-
-    }
+    private FilmeBuilder(){}
 
     public static FilmeBuilder umFilme() {
         FilmeBuilder builder = new FilmeBuilder();

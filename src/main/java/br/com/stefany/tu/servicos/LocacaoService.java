@@ -33,10 +33,10 @@ public class LocacaoService {
             if(filme.getEstoque() == 0) {
                 throw new FilmeSemEstoqueException();
             }
+        }
 
-            if (spcService.possuiNegativacao(usuario)) {
-                throw new LocadoraException("Usuário Negativado");
-            }
+        if(spcService.possuiNegativacao(usuario)) {
+            throw new LocadoraException("Usuário Negativado");
         }
 
         Locacao locacao = new Locacao();
@@ -73,8 +73,10 @@ public class LocacaoService {
 
     public void notificarAtrasos() {
         List<Locacao> locacoes = dao.obterLocacoesPendentes();
-        for (Locacao locacao: locacoes) {
-            emailService.notificarAtraso(locacao.getUsuario());
+        for(Locacao locacao: locacoes) {
+            if(locacao.getDataRetorno().before(new Date())) {
+                emailService.notificarAtraso(locacao.getUsuario());
+            }
         }
     }
 
@@ -82,7 +84,7 @@ public class LocacaoService {
         this.dao = dao;
     }
 
-    public void setSpcService(SPCService spc) {
+    public void setSPCService(SPCService spc) {
         spcService = spc;
     }
 

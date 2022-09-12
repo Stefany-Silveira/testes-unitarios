@@ -11,9 +11,11 @@ import br.com.stefany.tu.utils.DataUtils;
 
 import static br.com.stefany.tu.builders.FilmeBuilder.umFilme;
 import static br.com.stefany.tu.builders.UsuarioBuilder.umUsuario;
+import static br.com.stefany.tu.utils.DataUtils.obterDataComDiferencaDias;
 
 
 public class LocacaoBuilder {
+
     private Locacao elemento;
     private LocacaoBuilder(){}
 
@@ -52,6 +54,12 @@ public class LocacaoBuilder {
 
     public LocacaoBuilder comDataRetorno(Date param) {
         elemento.setDataRetorno(param);
+        return this;
+    }
+
+    public LocacaoBuilder atrasada(){
+        elemento.setDataLocacao(obterDataComDiferencaDias(-4));
+        elemento.setDataRetorno(obterDataComDiferencaDias(-2));
         return this;
     }
 
