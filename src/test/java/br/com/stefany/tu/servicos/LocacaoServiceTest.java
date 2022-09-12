@@ -10,7 +10,10 @@ import br.com.stefany.tu.utils.DataUtils;
 import org.junit.*;
 import org.junit.rules.ErrorCollector;
 import org.junit.rules.ExpectedException;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -29,10 +32,14 @@ import static org.mockito.Mockito.*;
 
 public class LocacaoServiceTest {
 
+    @InjectMocks
     private LocacaoService service;
 
+    @Mock
     private SPCService spc;
+    @Mock
     private LocacaoDAO dao;
+    @Mock
     private EmailService email;
 
     @Rule
@@ -42,14 +49,8 @@ public class LocacaoServiceTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Before
-    public void setup(){
-        service = new LocacaoService();
-        dao = Mockito.mock(LocacaoDAO.class);
-        service.setLocacaoDAO(dao);
-        spc = Mockito.mock(SPCService.class);
-        service.setSPCService(spc);
-        email = Mockito.mock(EmailService.class);
-        service.setEmailService(email);
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
@@ -146,7 +147,7 @@ public class LocacaoServiceTest {
     }
 
     @Test
-    public void deveEnviarEmailParaLocacoesAtrasadas(){
+    public void deveEnviarEmailParaLocacoesAtrasadas() {
 
         //cenario
         Usuario usuario = umUsuario().agora();
