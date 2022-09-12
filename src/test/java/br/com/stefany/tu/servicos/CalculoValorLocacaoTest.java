@@ -1,5 +1,7 @@
 package br.com.stefany.tu.servicos;
 
+import br.com.stefany.tu.dao.LocacaoDAO;
+import br.com.stefany.tu.dao.LocacaoDAOFake;
 import br.com.stefany.tu.entidades.Filme;
 import br.com.stefany.tu.entidades.Locacao;
 import br.com.stefany.tu.entidades.Usuario;
@@ -34,6 +36,8 @@ public class CalculoValorLocacaoTest {
     @Before
     public void setup() {
         service = new LocacaoService();
+        LocacaoDAO dao = new LocacaoDAOFake();
+        service.setLocacaoDAO(dao);
     }
 
     private static Filme filme1 = new Filme("Filme 1", 2, 4.0);

@@ -11,6 +11,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import br.com.stefany.tu.dao.LocacaoDAO;
+import br.com.stefany.tu.dao.LocacaoDAOFake;
 import br.com.stefany.tu.exception.FilmeSemEstoqueException;
 import br.com.stefany.tu.exception.LocadoraException;
 import br.com.stefany.tu.utils.DataUtils;
@@ -36,6 +38,8 @@ public class LocacaoServiceTest {
     @Before
     public void setup() {
         service = new LocacaoService();
+        LocacaoDAO dao = new LocacaoDAOFake();
+        service.setLocacaoDAO(dao);
     }
 
     @Test
