@@ -23,6 +23,9 @@ public class Calculadora {
         return Integer.valueOf(a) / Integer.valueOf(b);
     }
 
+    public void imprime() {
+        System.out.println("Passei aqui");
+    }
     public static void main(String[] args) {
         new Calculadora().divide("a", "b");
     }
