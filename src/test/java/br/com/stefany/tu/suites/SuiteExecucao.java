@@ -8,8 +8,8 @@ import br.com.stefany.tu.servicos.LocacaoServiceTest;
 import org.junit.runners.Suite;
 
 //@RunWith(Suite.class)
-@Suite.SuiteClasses({
-        CalculadoraTest.class,
+@SuiteClasses({
+//	CalculadoraTest.class,
         CalculoValorLocacaoTest.class,
         LocacaoServiceTest.class
 })

@@ -1,4 +1,4 @@
-package br.com.stefany.tu.servicos;
+package br.com.stefany.tu;
 
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
