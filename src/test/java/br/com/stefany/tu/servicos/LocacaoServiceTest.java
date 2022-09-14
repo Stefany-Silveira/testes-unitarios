@@ -41,7 +41,6 @@ import br.com.stefany.tu.exception.LocadoraException;
 import br.com.stefany.tu.utils.DataUtils;
 import org.powermock.reflect.Whitebox;
 
-@RunWith(ParallelRunner.class)
 public class LocacaoServiceTest {
 
     @InjectMocks @Spy
@@ -64,11 +63,17 @@ public class LocacaoServiceTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         System.out.println("Iniciando 2...");
+        CalculadoraTest.ordem.append("2");
     }
 
     @After
     public void tearDown() {
         System.out.println("finalizando 2...");
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+        System.out.println(CalculadoraTest.ordem.toString());
     }
 
     @Test

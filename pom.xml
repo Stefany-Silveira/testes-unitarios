@@ -8,6 +8,25 @@
     <artifactId>testes-unitarios</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <build>
+        <testSourceDirectory>src</testSourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <includes>
+                        <include>br/com/stefany/tu/**/*.java</include>
+                    </includes>
+                    <!-- <threadCount>5</threadCount> -->
+                    <useUnlimitedThreads>true</useUnlimitedThreads>
+                    <parallel>all</parallel>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>

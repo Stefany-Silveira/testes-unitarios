@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(ParallelRunner.class)
 public class CalculadoraTest {
 
     public static StringBuffer ordem = new StringBuffer();
