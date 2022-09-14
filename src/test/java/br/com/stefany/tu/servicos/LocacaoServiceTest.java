@@ -22,10 +22,8 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import br.com.stefany.tu.runners.ParallelRunner;
+import org.junit.*;
 import org.junit.rules.ErrorCollector;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
@@ -43,7 +41,9 @@ import br.com.stefany.tu.exception.LocadoraException;
 import br.com.stefany.tu.utils.DataUtils;
 import org.powermock.reflect.Whitebox;
 
+@RunWith(ParallelRunner.class)
 public class LocacaoServiceTest {
+
     @InjectMocks @Spy
     private LocacaoService service;
 
@@ -63,6 +63,12 @@ public class LocacaoServiceTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
+        System.out.println("Iniciando 2...");
+    }
+
+    @After
+    public void tearDown() {
+        System.out.println("finalizando 2...");
     }
 
     @Test
